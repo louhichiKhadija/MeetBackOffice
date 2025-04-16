@@ -12,7 +12,7 @@ export class MistralService {
   constructor(private http: HttpClient) { }
 
   askChat(message : string): Observable<any> {
-    return this.http.post(`${this.apiUrl}`, message);
+    return this.http.post(`${this.apiUrl}`, message, { responseType: 'text' });
   }
 
 }
