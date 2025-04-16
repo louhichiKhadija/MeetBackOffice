@@ -17,6 +17,7 @@ import { AppFooterComponent } from './app.footer.component';
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppLayoutComponent } from "./app.layout.component";
 import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
     declarations: [
@@ -40,7 +41,8 @@ import { ButtonModule } from 'primeng/button';
         RippleModule,
         RouterModule,
         ButtonModule,
-        InputSwitchModule
+        InputSwitchModule,
+        DialogModule
     ],
     exports: [AppLayoutComponent]
 })
