@@ -54,12 +54,12 @@
             <div class="card" >
                 <h5>Meeting per month</h5>
                 <p-chart *ngIf="!loading && !error" type="line" [data]="chartData" [options]="chartOptions"></p-chart>
-                <p *ngIf="error">An error has eccured while loading data !</p>
+                <p *ngIf="!loading && error">An error has eccured while loading data !</p>
             </div>
 
             <div class="card flex flex-column align-items-center">
                 <h5 class="text-left w-full">Meeting by type</h5>
-                <p *ngIf="error">An error has eccured while loading data !</p>
+                <p *ngIf="error && !loading">An error has eccured while loading data !</p>
                 <p-chart *ngIf="!loading" type="doughnut" [data]="pieData" [options]="pieOptions"></p-chart>
             </div>
     </div>

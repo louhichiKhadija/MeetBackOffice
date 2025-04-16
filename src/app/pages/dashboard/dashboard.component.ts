@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { forkJoin } from 'rxjs';
 import { DashboardService } from 'src/app/services/dashboard.service';
 
 @Component({
@@ -20,41 +21,25 @@ export class DashboardComponent implements OnInit {
     loadingExtendedStat: boolean = true;
     error: boolean = true;
 
-    constructor(public dashboardService: DashboardService) {
-        this.getFullStat();
-        this.getExtendedStat();
-    }
+    constructor(public dashboardService: DashboardService) {}
+
 
     ngOnInit() {
-
-        this.initMeetingsPerMonthChart();
-        this.initMeetingsByTypeChart();
-    }
-
-
-    getFullStat() {
-        this.dashboardService.getFullStat().subscribe(
-            data => {
-                this.statiques = data;
-                this.loading = false;
-            },
-            error => {
-                this.loading = false;
-                this.error = true;
-            }
-        );
-    }
-
-    getExtendedStat() {
-        this.dashboardService.getExtendedStat().subscribe(
+        forkJoin({
+            data1: this.dashboardService.getFullStat(),
+            data2: this.dashboardService.getExtendedStat()
+        }).subscribe(
             next => {
-                this.meetings = next.recentMeetingsEffectiveness;
-                this.loadingExtendedStat = false;
-            },
-            error => {
-                this.loadingExtendedStat = false;
-            }
-        );
+            this.initMeetingsPerMonthChart();
+            this.initMeetingsByTypeChart();
+            this.loading = false;
+            this.loadingExtendedStat = false;
+        },
+        error => {
+            this.error = true;
+            this.loading = false;
+            this.loadingExtendedStat = false;
+        });
     }
 
     initMeetingsPerMonthChart() {
