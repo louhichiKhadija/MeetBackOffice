@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { LayoutService } from "./service/app.layout.service";
-import { MeetingService } from '../services/meeting.service';
+import { ExternalApiService } from '../services/external-api.service';
 
 @Component({
     selector: 'app-topbar',
@@ -20,10 +20,10 @@ export class AppTopBarComponent {
 
     @ViewChild('topbarmenu') menu!: ElementRef;
 
-    constructor(public layoutService: LayoutService, private meetinService : MeetingService) { }
+    constructor(public layoutService: LayoutService, private externalApiService : ExternalApiService) { }
 
     getMeetLink(): void{
-        this.meetinService.createMeetingLink().subscribe(
+        this.externalApiService.createMeetingLink().subscribe(
             next => {
                 this.display = true;
                 this.link = next.url;

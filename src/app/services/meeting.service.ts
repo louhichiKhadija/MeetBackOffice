@@ -42,8 +42,4 @@ export class MeetingService {
       responseType: 'blob', // Specify the response type as Blob (binary data)
     });
   }
-
-  createMeetingLink(): Observable<any> {
-    return this.http.get<any[]>(`${this.apiUrl}/create`);
-  }
 }
