@@ -36,3 +36,26 @@ export interface Address {
     type?: MeetingType;
     description?: string;
   }
+
+
+  export enum MeetingTypes {
+    REVIEW = "Revue",
+    PROGRESS_UPDATE = "Mise à jour de progrès",
+    DEMO = "Démonstration",
+    SAFETY = "Réunion de sécurité",
+    PLANNING = "Planification",
+    COORDINATION = "Coordination",
+    CLIENT = "Réunion client",
+    EMERGENCY = "Urgence",
+    TRAINING = "Formation"
+  }
+
+  export enum Frequencies {
+    ONE_TIME = "Unique",
+    WEEKLY = "Hebdomadaire",
+    BIWEEKLY = "Bimensuel",
+    MONTHLY = "Mensuel",
+    QUARTERLY = "Trimestriel",
+    ANNUAL = "Annuel",
+    AD_HOC = "Au besoin"
+  }
