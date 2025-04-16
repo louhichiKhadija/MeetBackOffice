@@ -55,3 +55,13 @@ export enum Titles {
   LABORER = "Ouvrier",
   OTHER = "Autre"
 }
+
+
+export enum AttendanceStatuses {
+  REGISTERED = "Inscrit",
+  CONFIRMED = "Confirmé",
+  CANCELLED = "Annulé",
+  ATTENDED = "A participé",
+  NO_SHOW = "Absent"
+}
+

@@ -39,6 +39,22 @@
       </small>
     </div>
 
+    <div class="p-field">
+      <label for="Title">Title</label>
+      <p-dropdown id="Title" [ngModelOptions]="{standalone: true}" [autoDisplayFirst]="false" optionValue="key" optionLabel="value" [options]="attendeeTitles" [(ngModel)]="attendee.title" ></p-dropdown>
+      <small *ngIf="attendeeForm.controls['title']?.errors?.['title'] && attendeeForm.controls['title']?.touched" class="p-error">
+        Title must be valid.
+      </small>
+    </div>
+
+    <div class="p-field">
+      <label for="attendanceStatuses">Status</label>
+      <p-dropdown id="attendanceStatuses" [ngModelOptions]="{standalone: true}" [autoDisplayFirst]="false" optionValue="key" optionLabel="value" [options]="attendanceStatuses" [(ngModel)]="attendee.attendanceStatus"></p-dropdown>
+      <small *ngIf="attendeeForm.controls['attendanceStatus']?.errors?.['attendanceStatus'] && attendeeForm.controls['attendanceStatus']?.touched" class="p-error">
+        Attendance Status must be valid.
+      </small>
+    </div>
+
     <button type="submit" pButton label="Save" [disabled]="attendeeForm.invalid"></button>
   </form>
 

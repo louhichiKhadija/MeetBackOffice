@@ -3,7 +3,7 @@ import { AttendeeService } from '../../services/attendee.service';
 import { Meeting } from 'src/app/models/meeting';
 import { MeetingService } from 'src/app/services/meeting.service';
 import { Observable } from 'rxjs';
-import { Attendee } from 'src/app/models/attendee';
+import { AttendanceStatuses, Attendee, Titles } from 'src/app/models/attendee';
 
 @Component({
   selector: 'app-attendee',
@@ -11,12 +11,20 @@ import { Attendee } from 'src/app/models/attendee';
   styleUrls: ['./attendee.component.scss']
 })
 export class AttendeeComponent implements OnInit {
-  attendee: Attendee = { name: "", email: ""};
+  attendee: Attendee = { name: "", email: "", title: null , attendanceStatus: null};
 
   attendees: Attendee[] = []; // List of attendees
   meetingTitle: string = ''; // To store the meeting title for filtering
 
-  meetings: Observable<Meeting[]> = this.meetingService.getMeetings().pipe(()=> this.meetingService.getMeetings())
+  meetings: Observable<Meeting[]> = this.meetingService.getMeetings().pipe(()=> this.meetingService.getMeetings());
+
+  attendanceStatuses = Object.entries(AttendanceStatuses).map(
+      ([key, value]) => ({ key,value})
+  );
+  
+  attendeeTitles = Object.entries(Titles).map(
+      ([key, value]) => ({ key,value})
+  );
    
   constructor(private attendeeService: AttendeeService, private meetingService: MeetingService) { }
 
@@ -93,6 +101,6 @@ handleError(error: any) {
 
   // Reset the form
   resetForm() {
-    this.attendee = { name: "", email: ""};;
+    this.attendee = { name: "", email: "", title: null, attendanceStatus: null};;
   }
 }
