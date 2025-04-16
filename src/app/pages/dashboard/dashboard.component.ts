@@ -51,11 +51,11 @@ export class DashboardComponent implements OnInit {
         const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
         this.chartData = {
-            labels:  this.statiques.meetingsPerMonth ? Object.keys(this.statiques?.meetingsPerMonth).reverse(): [],
+            labels:  this.statiques.meetingsPerMonth ? Object.keys(this.statiques.meetingsPerMonth).reverse(): [],
             datasets: [
                 {
                     label: 'meetings Per Month',
-                    data: this.statiques?.meetingsPerMonth? Object.values(this.statiques?.meetingsPerMonth).reverse(): [],
+                    data: this.statiques?.meetingsPerMonth ? Object.values(this.statiques.meetingsPerMonth).reverse(): [],
                     fill: false,
                     backgroundColor: documentStyle.getPropertyValue('--green-600'),
                     borderColor: documentStyle.getPropertyValue('--green-600'),
