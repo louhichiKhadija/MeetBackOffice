@@ -37,3 +37,21 @@ export interface Attendee {
   safetyBriefingCompleted?: boolean;
   meetingId?: number; // Optional reference to meeting, just ID here for simplicity
 }
+
+export enum Titles {
+  PROJECT_MANAGER = "Chef de projet",
+  SITE_MANAGER = "Chef de chantier",
+  ARCHITECT = "Architecte",
+  CIVIL_ENGINEER = "Ingénieur civil",
+  ELECTRICAL_ENGINEER = "Ingénieur électricien",
+  MECHANICAL_ENGINEER = "Ingénieur mécanicien",
+  SAFETY_OFFICER = "Responsable sécurité",
+  QUANTITY_SURVEYOR = "Métreur",
+  CONTRACTOR = "Entrepreneur",
+  SUBCONTRACTOR = "Sous-traitant",
+  CLIENT_REPRESENTATIVE = "Représentant du client",
+  SUPPLIER = "Fournisseur",
+  TECHNICIAN = "Technicien",
+  LABORER = "Ouvrier",
+  OTHER = "Autre"
+}

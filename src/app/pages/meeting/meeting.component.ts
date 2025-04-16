@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MeetingService } from '../../services/meeting.service'; // Import the service
 import { futureOrPresentDateValidator } from '../../Validators/custom-validators';
-import { Meeting } from 'src/app/models/meeting';
+import { Frequencies, Meeting, MeetingTypes } from 'src/app/models/meeting';
 @Component({
   selector: 'app-meeting',
   templateUrl: './meeting.component.html', // Ensure this path is correct
@@ -9,6 +9,14 @@ import { Meeting } from 'src/app/models/meeting';
 })
 export class MeetingComponent implements OnInit {
   meeting: Meeting = null;
+
+  meetingTypes = Object.entries(MeetingTypes).map(
+    ([key, value]) => ({ key,value})
+  );
+
+  meetingFrequencies = Object.entries(Frequencies).map(
+    ([key, value]) => ({ key,value})
+  );
 
   meetings: Meeting[] = []; // List of meetings
   isEditMode: boolean = false; // To track if we are in edit mode
