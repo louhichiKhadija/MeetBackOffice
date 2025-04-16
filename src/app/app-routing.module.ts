@@ -6,6 +6,7 @@ import { MeetingComponent } from "./pages/meeting/meeting.component";
 import { AttendeeComponent} from "./pages/attendee/attendee.component";
 import { AddMeetingComponent } from './pages/add-meeting/add-meeting.component';
 import { MistralChatComponent } from './pages/mistral-chat/mistral-chat.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 @NgModule({
     imports: [
@@ -13,16 +14,11 @@ import { MistralChatComponent } from './pages/mistral-chat/mistral-chat.componen
             {
                 path: '', component: AppLayoutComponent,
                 children: [
-                    { path: '', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
-                    { path: 'uikit', loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule) },
-                    { path: 'utilities', loadChildren: () => import('./demo/components/utilities/utilities.module').then(m => m.UtilitiesModule) },
-                    { path: 'documentation', loadChildren: () => import('./demo/components/documentation/documentation.module').then(m => m.DocumentationModule) },
-                    { path: 'blocks', loadChildren: () => import('./demo/components/primeblocks/primeblocks.module').then(m => m.PrimeBlocksModule) },
-                    { path: 'pages', loadChildren: () => import('./demo/components/pages/pages.module').then(m => m.PagesModule) },
+                    { path: '', component: DashboardComponent},
                     { path: 'meeting', component: MeetingComponent },
                     { path: 'attendee', component: AttendeeComponent },
                     { path: 'add-meeting', component: AddMeetingComponent },
-                    { path: 'mistral', component: MistralChatComponent}
+                    { path: 'mistral', component: MistralChatComponent},
                 ]   
             },
             { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },

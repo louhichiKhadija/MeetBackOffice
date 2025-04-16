@@ -26,10 +26,15 @@ import { DropdownModule } from "primeng/dropdown";
 import { MistralChatComponent } from './pages/mistral-chat/mistral-chat.component';
 import { CardModule } from 'primeng/card';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { ChartModule } from 'primeng/chart';
+import { MenuModule } from 'primeng/menu';
+import { StyleClassModule } from 'primeng/styleclass';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 @NgModule({
     declarations: [
-        AppComponent, NotfoundComponent, MeetingComponent,AttendeeComponent, AddMeetingComponent, MistralChatComponent
+        AppComponent, NotfoundComponent, MeetingComponent,AttendeeComponent, AddMeetingComponent, MistralChatComponent, DashboardComponent
     ],
     imports: [
         AppRoutingModule,
@@ -45,7 +50,14 @@ import { ProgressBarModule } from 'primeng/progressbar';
         TableModule,
         DropdownModule,
         CardModule,
-        ProgressBarModule
+        ProgressBarModule,
+        CommonModule,
+        ChartModule,
+        MenuModule,
+        TableModule,
+        StyleClassModule,
+        PanelMenuModule,
+        ButtonModule,
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
