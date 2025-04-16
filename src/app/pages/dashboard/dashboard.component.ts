@@ -31,15 +31,11 @@ export class DashboardComponent implements OnInit {
         this.initMeetingsByTypeChart();
     }
 
-    formatStat(data: any): void {
-        this.attendanceStats =  JSON.parse("{'A participé': 9, 'Inscrit': 6,'Absent': 3,'Confirmé': 9}");
-    }
 
     getFullStat() {
         this.dashboardService.getFullStat().subscribe(
             data => {
                 this.statiques = data;
-                this.formatStat(data);
                 this.loading = false;
             },
             error => {
