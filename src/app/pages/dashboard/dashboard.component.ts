@@ -30,6 +30,8 @@ export class DashboardComponent implements OnInit {
             data2: this.dashboardService.getExtendedStat()
         }).subscribe(
             next => {
+            this.statiques = next.data1;
+            this.meetings = next.data2.recentMeetingsEffectiveness;
             this.initMeetingsPerMonthChart();
             this.initMeetingsByTypeChart();
             this.loading = false;
@@ -49,7 +51,7 @@ export class DashboardComponent implements OnInit {
         const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
         this.chartData = {
-            labels:  this.statiques?.meetingsPerMonth ? Object.keys(this.statiques?.meetingsPerMonth).reverse(): [],
+            labels:  this.statiques.meetingsPerMonth ? Object.keys(this.statiques?.meetingsPerMonth).reverse(): [],
             datasets: [
                 {
                     label: 'meetings Per Month',

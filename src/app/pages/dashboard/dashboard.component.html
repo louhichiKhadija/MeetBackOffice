@@ -41,9 +41,9 @@
                     <ng-template pTemplate="body" let-meeting>
                         <tr>
                             <td style="width: 35%; min-width: 8rem;">{{meeting.meetingTitle}}</td>
-                            <td style="width: 35%; min-width: 7rem;">{{meeting.date | date: "yyyy-MM-ss"}}</td>
+                            <td style="width: 35%; min-width: 7rem;">{{meeting.date | date:'short'}}</td>
                             <td style="width: 35%; min-width: 7rem;">{{meeting.attended}}</td>
-                            <td style="width: 35%; min-width: 8rem;">{{meeting.attendanceRate | number:'.0-2'| percent}}</td>
+                            <td style="width: 35%; min-width: 8rem;">{{meeting.attendanceRate | number:'.0-2'}} %</td>
                         </tr>
                     </ng-template>
                 </p-table>
