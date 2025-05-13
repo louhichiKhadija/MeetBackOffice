@@ -28,8 +28,9 @@ export interface Address {
   export interface Meeting {
     id?: number;
     title: string;
-    date: string; // ISO string format e.g. "2025-04-15T10:00:00"
-    duration?: number;
+    date: string;
+    endTime: string;
+    duration: number;
     location?: string;
     address?: Address;
     frequency?: Frequency;

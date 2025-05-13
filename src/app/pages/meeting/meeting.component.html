@@ -57,7 +57,7 @@
 
     <!-- Date Field -->
     <div class="p-field">
-      <label for="date">Date</label>
+      <label for="date">Start Date</label>
       <p-calendar 
         id="date" 
         [(ngModel)]="meeting.date" 
@@ -71,6 +71,24 @@
       </small>
       <small *ngIf="meetingForm.controls['date']?.errors?.['pastDate'] && meetingForm.controls['date']?.touched" class="p-error">
         Date must be today or in the future.
+      </small>
+    </div>
+
+    <div class="p-field">
+      <label for="endTime">End Date</label>
+      <p-calendar 
+        id="endTime" 
+        [(ngModel)]="meeting.endTime" 
+        name="endTime" 
+        [showTime]="true" 
+        required 
+        [ngModelOptions]="{ updateOn: 'blur', validators: futureOrPresentDateValidator() }">
+      </p-calendar>
+      <small *ngIf="meetingForm.controls['endTime']?.errors?.['required'] && meetingForm.controls['endTime']?.touched" class="p-error">
+        End Date is required.
+      </small>
+      <small *ngIf="meetingForm.controls['endTime']?.errors?.['pastDate'] && meetingForm.controls['endTime']?.touched" class="p-error">
+        End Date must be today or in the future.
       </small>
     </div>
 

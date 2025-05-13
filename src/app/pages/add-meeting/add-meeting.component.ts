@@ -12,6 +12,8 @@ export class AddMeetingComponent implements OnInit {
   meeting: any = {
     title: '',
     date: null,
+    endTime: null,
+    duration: 0,
     location: '',
     description: '',
     type: '',
@@ -33,8 +35,6 @@ export class AddMeetingComponent implements OnInit {
   );
 
   meetings: any[] = []; // List of meetings
-  isEditMode: boolean = false; // To track if we are in edit mode
-  editMeetingId: number | null = null; // To store the ID of the meeting being edited
 
   futureOrPresentDateValidator = futureOrPresentDateValidator;
   constructor(private meetingService: MeetingService) { } // Inject the service
@@ -55,31 +55,18 @@ export class AddMeetingComponent implements OnInit {
     );
   }
 
-  // Submit the form (create or update a meeting)
+  // Submit the form (create a meeting)
   onSubmit() {
-    if (this.isEditMode) {
-      // If in edit mode, call the update method
-      this.meetingService.updateMeetingById(this.editMeetingId!, this.meeting)
-        .subscribe(response => {
-          console.log('Meeting updated successfully', response);
-          alert('Meeting updated successfully!');
-          this.loadMeetings(); // Reload meetings after updating
-          this.resetForm(); // Reset the form
-        }, error => {
-          this.handleError(error)
-        });
-    } else {
-      // If not in edit mode, call the create method
-      this.meetingService.createMeeting(this.meeting)
-        .subscribe(response => {
-          console.log('Meeting added successfully', response);
-          alert('Meeting added successfully!');
+    this.meeting.duration = new Date(this.meeting.endTime).getTime() - new Date(this.meeting.date).getTime();
+    this.meetingService.createMeeting(this.meeting)
+    .subscribe(response => {
+      console.log('Meeting added successfully', response);
+      alert('Meeting added successfully!');
           this.loadMeetings(); // Reload meetings after adding a new one
           this.resetForm(); // Reset the form
-        }, error => {
-          this.handleError(error);
-        });
-    }
+      }, error => {
+        this.handleError(error);
+      });
   }
   handleError(error: any) {
     if (error.error && error.error.errors) {
@@ -96,12 +83,6 @@ export class AddMeetingComponent implements OnInit {
     } else {
       alert('An unexpected error occurred. Please try again.'); // Generic error message
     }
-  }
-  // Edit a meeting
-  onEdit(meeting: any) {
-    this.isEditMode = true;
-    this.editMeetingId = meeting.id;
-    this.meeting = { ...meeting }; // Populate the form with the selected meeting data
   }
 
   // Delete a meeting
@@ -125,10 +106,10 @@ export class AddMeetingComponent implements OnInit {
       title: '',
       date: null,
       location: '',
-      description: ''
+      description: '',
+      duration: 0,
+      endTime: null,
     };
-    this.isEditMode = false;
-    this.editMeetingId = null;
   }
   // Export meetings to PDF
   onExportPdf() {

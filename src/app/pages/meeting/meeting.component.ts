@@ -41,10 +41,9 @@ export class MeetingComponent implements OnInit {
     );
   }
 
-  // Submit the form (create or update a meeting)
+  // Submit the form (update a meeting)
   onSubmit() {
-    if (this.isEditMode) {
-      // If in edit mode, call the update method
+    this.meeting.duration = new Date(this.meeting.endTime).getTime() - new Date(this.meeting.date).getTime();
       this.meetingService.updateMeetingById(this.editMeetingId!, this.meeting)
         .subscribe(response => {
           console.log('Meeting updated successfully', response);
@@ -54,19 +53,8 @@ export class MeetingComponent implements OnInit {
         }, error => {
           this.handleError(error)
         });
-    } else {
-      // If not in edit mode, call the create method
-      this.meetingService.createMeeting(this.meeting)
-        .subscribe(response => {
-          console.log('Meeting added successfully', response);
-          alert('Meeting added successfully!');
-          this.loadMeetings(); // Reload meetings after adding a new one
-          this.resetForm(); // Reset the form
-        }, error => {
-          this.handleError(error);
-        });
-    }
   }
+
   handleError(error: any) {
     if (error.error && error.error.errors) {
       const errors = error.error.errors;
